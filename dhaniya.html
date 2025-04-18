@@ -13,7 +13,8 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            /* Set background image here */
+            background-image: url('https://sinfullyspicy.com/wp-content/uploads/2023/09/1200-by-1200-images-2-1.jpg');
             font-family: Arial, sans-serif;
         }
 
@@ -26,8 +27,12 @@
         }
 
         #game-canvas {
-            background-color: #70c5ce;
+            background-color: transparent; /* Make the initial background transparent */
             border: 2px solid #333;
+            /* Set canvas background image here */
+            background-image: url('https://opengameart.org/sites/default/files/bg_night.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
         }
 
         #controls {
@@ -170,6 +175,7 @@
         document.addEventListener('keydown', function(e) {
             if ((e.code === 'Space' || e.key === ' ') && gameStarted && !gameOver) {
                 bird.velocity = bird.jump;
+                playSound(eugh);
             }
         });
 
@@ -286,7 +292,6 @@
                     gameOver = true;
                     restartBtn.disabled = false;
                     backgroundMusic.pause();
-                    playSound(eugh);
                     backgroundMusic.currentTime = 0; // Stop background music on collision
                     return;
                 }
@@ -311,9 +316,9 @@
             // Clear canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw background
-            ctx.fillStyle = '#70c5ce';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // We no longer need to draw the static background color here
+            // ctx.fillStyle = '#70c5ce';
+            // ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             // Draw bird
             ctx.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
