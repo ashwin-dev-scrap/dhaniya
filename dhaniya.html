@@ -182,6 +182,7 @@
         canvas.addEventListener('click', function() {
             if (gameStarted && !gameOver) {
                 bird.velocity = bird.jump;
+                playSound(eugh);
             }
         });
 
